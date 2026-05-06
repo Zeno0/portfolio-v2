@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import QSphere from "../components/QSphere";
+import PhaseLegend from "../components/PhaseLegend";
+import QSphereLabels from "../components/QSphereLabels";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -27,7 +31,12 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+       <QSphere />   {/* 🌌 Global Quantum Layer */}
+       {/* <QSphereLabels /> */}
+       <PhaseLegend />
+       {children}
+      </body>
     </html>
   );
 }
