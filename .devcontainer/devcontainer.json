@@ -1,0 +1,5 @@
+{
+  "name": "Portfolio Dev",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "postCreateCommand": "cd frontend && npm install && cd ../backend && pip install flask flask-cors"
+}
