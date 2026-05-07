@@ -1,6 +1,8 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
 
+from db import get_connection
+
 app = Flask(__name__)
 CORS(app)
 
@@ -8,5 +10,29 @@ CORS(app)
 def health():
     return jsonify({"status": "ok"})
 
+@app.route("/api/projects")
+def get_projects():
+    conn = get_connection()
+    cur = conn.cursor()
+
+    cur.execute("SELECT id, title, description, github_url, tech_stack FROM projects;")
+    rows = cur.fetchall()
+
+    projects = [
+        {
+            "id": r[0],
+            "title": r[1],
+            "description": r[2],
+            "github_url": r[3],
+            "tech_stack": r[4]
+        }
+        for r in rows
+    ]
+
+    cur.close()
+    conn.close()
+
+    return jsonify(projects)
+
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=True)
