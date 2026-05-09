@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 export default function Home() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [projects, setProjects] = useState<any[]>([]);
+  const [cert, setCert] = useState<any[]>([]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -23,6 +24,19 @@ export default function Home() {
       }
     }
     fetchProjects();
+
+    async function fetchCert() {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/certificates`);
+        const data = await res.json();
+        setCert(data);
+      } catch (err) {
+        console.error("Error fetching projects", err);
+      }
+    }
+    fetchCert();
+
+
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
@@ -196,137 +210,131 @@ export default function Home() {
               className="p-6 border border-gray-800 rounded-xl transition"
               key={p.id}
             >
-              <h3 className="text-xl font-semibold">{p.title}v2</h3>
+              <h3 className="text-xl font-semibold">{p.title}</h3>
               <p className="text-gray-400 mt-2">
                 {p.description}
               </p>
               <a href={p.github_url} className="text-blue-500 mt-3 inline-block">
                 View Repo →
               </a>
-            </motion.div>
-            ))}
-
-            <motion.div
-              whileHover={{ scale: 1.03 }}
-              className="p-6 border border-gray-800 rounded-xl transition">
-              <h3 className="text-xl font-semibold">Git Clone System</h3>
               <p className="text-gray-400 mt-2">
-                Custom version control system implementation.
+                {p.tech_stack}
               </p>
             </motion.div>
-
+            ))}
           </div>
         </motion.section>
         
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-  <section className="max-w-4xl mx-auto mt-32">
-  <h2 className="text-3xl font-semibold">Credentials</h2>
-  <p className="text-gray-400 mt-4">
-    Certifications, technical achievements, and continuous learning.
-  </p>
-
-  <div className="mt-8 p-6 border border-gray-800 rounded-2xl">
-
-    {/* Card 1 */}
-    <div className="p-6 border border-gray-800 rounded-2xl hover:border-gray-600 transition bg-black/40 backdrop-blur-sm">
-      
-      <div className="flex items-center gap-4">
-        <img
-          src="/badges/aws.png"
-          alt="AWS Badge"
-          className="w-14 h-14 object-contain"
-        />
-
-        <div>
-          <h3 className="text-xl font-semibold">
-           Java Programming and S/E Fundamentals
-          </h3>
-
-          <p className="text-gray-400 text-sm">
-           Duke University
+          {/* CREDENTIALS */}
+        <motion.section
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto mt-20"
+        >
+          <h2 className="text-3xl font-semibold">Credentials</h2>
+          <p className="text-gray-400 mt-4">
+            Certifications, technical achievements, and continuous learning.
           </p>
-        </div>
-      </div>
+          <div className="grid md:grid-cols-2 gap-6 mt-8">
+            {cert.map((p) => (
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              className="p-6 border border-gray-800 rounded-xl transition"
+              key={p.id}
+            >
+            <div className="flex items-start gap-4">
+              <img
+                src="/badges/aws.png"
+                alt="AWS Badge"
+                className="w-14 h-14 object-contain"
+              />
+              <div>
+              <h3 className="text-xl font-semibold">{p.title}</h3>
+              <p className="text-gray-400 mt-2">
+                {p.issuer}
+              </p>
+              </div>
+              </div>
+                <a href={p.credential_url} className="text-blue-500 mt-3 inline-block">
+                View Credential →
+              </a>
+            
+            </motion.div>
+            ))}
+          </div>
+        </motion.section>
 
-      <p className="text-gray-400 mt-5 leading-relaxed">
-        Programming Foundations with JavaScript, HTML and CSS
-        Java Programming: Solving Problems with Software
-        Java Programming: Arrays, Lists, and Structured Data
-        Java Programming: Principles of Software Design
-        Java Programming: Build a Recommendation System
+
+
+            <footer className="max-w-5xl mx-auto mt-40 border-t border-gray-900 py-10 text-sm text-gray-500">
+
+  <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+
+    {/* Left */}
+    <div>
+      <p className="text-gray-400">
+        Built by <span className="text-white">Shekhar Kumar</span>
       </p>
 
-      <a
-        href="https://coursera.org/share/7730fc0e49511794b49636d6fd4770e5"
-        className="inline-block mt-6 text-blue-500 hover:text-blue-400"
-      >
-        View Credential →
-      </a>
+      <p className="mt-2">
+        Exploring Quantum Computing, backend engineering,
+        distributed architectures, and intelligent applications.
+      </p>
     </div>
 
-     {/* Card 1 */}
-    <div className="p-6 border border-gray-800 rounded-2xl hover:border-gray-600 transition bg-black/40 backdrop-blur-sm">
-      
-      <div className="flex items-center gap-4">
-        <img
-          src="/badges/aws.png"
-          alt="AWS Badge"
-          className="w-14 h-14 object-contain"
-        />
-
-        <div>
-          <h3 className="text-xl font-semibold">
-           Java Programming and S/E Fundamentals
-          </h3>
-
-          <p className="text-gray-400 text-sm">
-           Duke University
-          </p>
-        </div>
-      </div>
-
-      <p className="text-gray-400 mt-5 leading-relaxed">
-        Programming Foundations with JavaScript, HTML and CSS
-        Java Programming: Solving Problems with Software
-        Java Programming: Arrays, Lists, and Structured Data
-        Java Programming: Principles of Software Design
-        Java Programming: Build a Recommendation System
-      </p>
+    {/* Right */}
+    <div className="flex gap-6">
 
       <a
-        href="https://coursera.org/share/7730fc0e49511794b49636d6fd4770e5"
-        className="inline-block mt-6 text-blue-500 hover:text-blue-400"
+        href="https://github.com/Zeno0"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:text-white transition"
       >
-        View Credential →
+        GitHub
       </a>
+
+      <a
+        href="#"
+        className="hover:text-white transition"
+      >
+        LinkedIn
+      </a>
+
+      <a
+        href="mailto:your@email.com"
+        className="hover:text-white transition"
+      >
+        Email
+      </a>
+
     </div>
 
   </div>
-</section>
+
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+  
     </main>
   );
 }

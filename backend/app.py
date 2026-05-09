@@ -34,5 +34,28 @@ def get_projects():
 
     return jsonify(projects)
 
+@app.route("/api/certificates")
+def get_certificates():
+    conn = get_connection()
+    cur = conn.cursor()
+
+    cur.execute("SELECT id, title, issuer, credential_url FROM certificates;")
+    rows = cur.fetchall()
+
+    certs = [
+        {
+            "id": r[0],
+            "title": r[1],
+            "issuer": r[2],
+            "credential_url": r[3]
+        }
+        for r in rows
+    ]
+
+    cur.close()
+    conn.close()
+
+    return jsonify(certs)
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
