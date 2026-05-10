@@ -4,7 +4,13 @@ from flask_cors import CORS
 from db import get_connection
 
 app = Flask(__name__)
-CORS(app)
+# CORS(app) use it only for test purpose
+CORS(
+    app,
+    origins = [
+        "https://portfolio-v2-mocha-nu.vercel.app"
+    ]
+)
 
 @app.route("/api/health")
 def health():
