@@ -251,7 +251,7 @@ export default function Home() {
         >
           <h2 className="text-3xl font-semibold">Credentials</h2>
           <p className="text-gray-400 mt-4">
-            Certifications, technical achievements, and continuous learning.
+            Certifications, technical achievements, and continuous learning. 
           </p>
           <div className="grid md:grid-cols-2 gap-6 mt-8">
             {cert.map((p) => (
@@ -276,7 +276,9 @@ export default function Home() {
                 <a href={p.credential_url} className="text-blue-500 mt-3 inline-block">
                 View Credential →
               </a>
-            
+             <p className="text-gray-400 mt-2">
+                {p.issuer} {p.badge_image}
+              </p>
             </motion.div>
             ))}
           </div>
