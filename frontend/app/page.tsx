@@ -262,8 +262,8 @@ export default function Home() {
             >
             <div className="flex items-start gap-4">
               <img
-                src="/badges/java-duke.png"
-                alt="AWS Badge"
+                src={p.badge}
+                alt="IMG"
                 className="w-14 h-14 object-contain"
               />
               <div>
