@@ -269,7 +269,7 @@ export default function Home() {
               <div>
               <h3 className="text-xl font-semibold">{p.title}</h3>
               <p className="text-gray-400 mt-2">
-                {p.issuer}
+                {p.badge}
               </p>
               </div>
               </div>
