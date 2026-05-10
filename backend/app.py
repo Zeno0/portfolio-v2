@@ -45,7 +45,7 @@ def get_certificates():
     conn = get_connection()
     cur = conn.cursor()
 
-    cur.execute("SELECT id, title, issuer, credential_url FROM certificates;")
+    cur.execute("SELECT id, title, issuer, credential_url, badge_image FROM certificates;")
     rows = cur.fetchall()
 
     certs = [
@@ -54,7 +54,7 @@ def get_certificates():
             "title": r[1],
             "issuer": r[2],
             "credential_url": r[3],
-            "badge": r[4]
+            "badge_image": r[4]
         }
         for r in rows
     ]

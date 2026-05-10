@@ -262,14 +262,14 @@ export default function Home() {
             >
             <div className="flex items-start gap-4">
               <img
-                src={p.badge}
+                src={p.badge_image}
                 alt="IMG"
                 className="w-14 h-14 object-contain"
               />
               <div>
               <h3 className="text-xl font-semibold">{p.title}</h3>
               <p className="text-gray-400 mt-2">
-                {p.badge}
+                {p.issuer}
               </p>
               </div>
               </div>
