@@ -53,7 +53,8 @@ def get_certificates():
             "id": r[0],
             "title": r[1],
             "issuer": r[2],
-            "credential_url": r[3]
+            "credential_url": r[3],
+            "badge_image": r[4]
         }
         for r in rows
     ]

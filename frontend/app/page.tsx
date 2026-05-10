@@ -262,8 +262,8 @@ export default function Home() {
             >
             <div className="flex items-start gap-4">
               <img
-                src="/badges/aws.png"
-                alt="AWS Badge"
+                src={p.badge_image}
+                alt="DUKE Uni Badge"
                 className="w-14 h-14 object-contain"
               />
               <div>
