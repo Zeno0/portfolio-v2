@@ -57,9 +57,11 @@ export default function Home() {
         <h1 className="text-xl font-semibold">Shekhar.dev</h1>
 
         <div className="flex gap-6 text-gray-400">
-          <a href="#" className="hover:text-white">Projects</a>
-          <a href="#" className="hover:text-white">About</a>
-          <a href="#" className="hover:text-white">Contact</a>
+          <a href="#projects" className="hover:text-white">Projects</a>
+          <a href="/about" className="hover:text-white">About</a>
+          <a href="/contact" className="hover:text-white transition">
+            Contact
+          </a>
         </div>
       </nav>
         
@@ -80,9 +82,20 @@ export default function Home() {
             simulations to quantum computing exploration.        
           </p>
           <div className="mt-8 flex gap-4">
-            <button className="px-6 py-2 bg-blue-500 rounded-lg transition transform hover:scale-105 hover:bg-blue-600">
-              Contact
-            </button>
+            <a
+  href="/contact"
+  className="
+  px-6 py-2
+  bg-blue-500
+  rounded-lg
+  transition
+  transform
+  hover:scale-105
+  hover:bg-blue-600
+  "
+>
+  Contact
+</a>
           </div>
           <p className="text-sm text-gray-500 mt-4">
             Software Engineering • Development Workflows • Collaboration
@@ -197,6 +210,7 @@ export default function Home() {
 
     {/* PROJECTS */}
         <motion.section
+          id="projects"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -306,7 +320,7 @@ export default function Home() {
       </a>
 
       <a
-        href="mailto:your@email.com"
+        href="mailto:zenobell143@gmail.com?subject=Portfolio Inquiry"
         className="hover:text-white transition"
       >
         Email
