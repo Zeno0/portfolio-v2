@@ -332,6 +332,9 @@ export default function Home() {
               <p className="text-gray-400 mt-2">
                 {p.issuer}
               </p>
+              <p className="text-gray-400 mt-2">
+                {p.issue_date}
+              </p>
               </div>
               </div>
                 <a href={p.credential_url} className="text-blue-500 mt-3 inline-block">
