@@ -1,8 +1,30 @@
+"use client";
+import { useState, useEffect } from "react";
+
+
 export default function AboutPage() {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  useEffect(() => {
+
+  const handleMouseMove = (e: MouseEvent) => {
+    setPosition({
+      x: e.clientX,
+      y: e.clientY
+    });
+  };
+
+  window.addEventListener("mousemove", handleMouseMove);
+
+  return () => {
+    window.removeEventListener("mousemove", handleMouseMove);
+  };
+
+}, []);
+
   const timeline = [
      {
       year: "2021",
-      title: "Gurukul Kangari Vishwavidhyala, B.tech - Graduate",
+      title: "Gurukul Kangri Vishwavidhyala, B.tech - Graduate",
       desc: "Studied core computer science concepts including data structures, operating systems, databases, computer architecture, and software engineering while developing a strong interest in systems, low-level computing, and experimental technology.",
     },
      {
@@ -43,8 +65,22 @@ export default function AboutPage() {
 
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden relative">
+
+      
       {/* Background Glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.15),transparent_35%)] pointer-events-none" />
+      
+      {/* Mouse Glow */}
+        <div
+          className="pointer-events-none fixed inset-0 -z-0"
+          style={{
+            background: `radial-gradient(
+              600px at ${position.x}px ${position.y}px,
+              rgba(59,130,246,0.15),
+              transparent 80%
+            )`,
+          }}
+        />
 
       {/* Navbar */}
       <nav className="max-w-6xl mx-auto px-6 py-8 flex items-center justify-between relative z-10">
